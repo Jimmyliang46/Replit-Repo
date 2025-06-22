@@ -1,0 +1,27 @@
+import random 
+import secrets 
+def hangman():
+    words = ["python", "hangman", "easy", "code", "barber", "computer", "science", "programming", "algorithm", "data", "structure", "linked", "list"]
+    secret_word = secrets.choice(words)
+    lives = 6
+    display = ["_"] * len(secret_word)
+
+    while lives > 0 and "_" in display:
+        print("Word:", " ".join(display))
+        guess = input("Guess a letter: ").lower()
+
+        if guess in secret_word:
+            for i in range(len(secret_word)):
+                if secret_word[i] == guess:
+                    display[i] = guess
+        else:
+            lives -= 1
+            print(f"Wrong guess! You have {lives} lives left.")
+
+    if "_" not in display:
+        print("You won! The word was:", secret_word)
+    else:
+        print("Game over. The word was:", secret_word)
+
+
+hangman()
